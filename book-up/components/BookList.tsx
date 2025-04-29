@@ -1,8 +1,9 @@
 export default function BookList() {
+  const bookDetails = ()=> console.log("book details");
+  
   return (
     <div className="overflow-x-auto">
-      <table className="table table-zebra">
-        {/* head */}
+      <table className="table">
         <thead>
           <tr>
             <th>Title</th>
@@ -12,7 +13,17 @@ export default function BookList() {
         </thead>
         <tbody>
           {/* row 1 */}
-          <tr>
+          <tr onClick={bookDetails} className="hover:bg-primary hover:text-primary-content cursor-pointer">
+            <td>Cy Ganderton</td>
+            <td>Quality Control Specialist</td>
+            <td>Blue</td>
+          </tr>
+          <tr onClick={bookDetails} className="hover:bg-primary hover:text-primary-content cursor-pointer">
+            <td>Cy Ganderton</td>
+            <td>Quality Control Specialist</td>
+            <td>Blue</td>
+          </tr>
+          <tr onClick={bookDetails} className="hover:bg-primary hover:text-primary-content cursor-pointer">
             <td>Cy Ganderton</td>
             <td>Quality Control Specialist</td>
             <td>Blue</td>

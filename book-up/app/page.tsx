@@ -17,7 +17,7 @@ export default function Home() {
           <div className="max-w-lg mx-[10%]">
             <SearchInput />
           </div>
-          <div className="mx-[10%] my-7 bg-base-100/90 rounded-md">
+          <div className="mx-[10%] mt-7 bg-base-100/90 rounded-md">
             <BookList />
             <Pagination />
           </div>
