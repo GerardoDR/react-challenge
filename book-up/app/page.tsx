@@ -1,9 +1,10 @@
 'use client'
 
-import HeroTitle from "@/components/HeroTitle";
 import styles from "./styles.module.css"
-import { SearchInput } from "@/components/SearchInput";
+import HeroTitle from "@/components/HeroTitle";
 import BookList from "@/components/BookList";
+import Pagination from "@/components/Pagination";
+import SearchInput from "@/components/SearchInput";
 
 export default function Home() {
   return (
@@ -18,13 +19,7 @@ export default function Home() {
           </div>
           <div className="mx-[10%] my-7 bg-base-100/90 rounded-md">
             <BookList />
-            <div className="join mt-7 flex justify-end p-4">
-              <span className="me-2 self-center">Pages:</span>
-              <button className="join-item btn">1</button>
-              <button className="join-item btn btn-active">2</button>
-              <button className="join-item btn">3</button>
-              <button className="join-item btn">4</button>
-            </div>
+            <Pagination />
           </div>
         </main>
       </div>
