@@ -81,7 +81,7 @@ export default function BookDetailsModal({ bookOLID, bookSearchDetails, isOpen, 
                             {authors &&
                                 <div>
                                     <p className="font-bold text-lg">Authors</p>
-                                    {authors?.map(author => <div key={author.key + '_bio'} className='mb-3'>
+                                    {authors?.map(author => <div key={author.key + '_bio'} className='mb-2'>
                                         <p>{author.name}</p>
                                         {author.bio?.value &&
                                             <>

@@ -1,8 +1,8 @@
 "use client";
-import { Doc, OLResults } from "@/types/OLResults";
 import Pagination from "./Pagination";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import BookDetailsModal from "./BookDetailsModal";
+import { Doc, OLResults } from "@/types/OLResults";
 
 type BookListProps = {
   booklist: OLResults | undefined;
@@ -58,7 +58,7 @@ export default function BookList({ booklist, setBooklist, loading }: BookListPro
                 return (
                   <tr onClick={() => goToDetailsModal(book.key)} className="hover:bg-primary hover:text-primary-content cursor-pointer" key={book.key}>
                     <td>{book.title || 'Unknown'}</td>
-                    <td>{book.author_name || 'Unknown'}</td>
+                    <td>{book.author_name?.join(', ') || 'Unknown'}</td>
                     <td>{book.first_publish_year || 'Unknown'}</td>
                   </tr>
                 )
