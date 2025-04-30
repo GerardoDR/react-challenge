@@ -1,17 +1,26 @@
 "use client";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-type Inputs = {
+export type SearchBy = "book" | "author" | "both";
+
+export type Inputs = {
     textInput: string;
-    select: string;
+    select: SearchBy;
 };
 
-export default function SearchInput() {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
+type SearchInputProps = {
+    handleSearch: (dataFromSearchInput: Inputs) => void;
+}
+
+export default function SearchInput({ handleSearch }: SearchInputProps) {
+    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
+
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        if(errors.textInput) return
-        console.log(data)
+        if (errors.textInput) return
+        return handleSearch(data)
     }
+
     return (
         <form className="join w-full bg-neutral rounded-md"
             onSubmit={handleSubmit(onSubmit)}
@@ -33,14 +42,14 @@ export default function SearchInput() {
                     {...register("textInput", { required: true, minLength: 4 })}
                 />
             </label>
-            <select defaultValue="Book title" className="select w-min"
+            <select defaultValue="book" className="select w-min"
                 {...register("select")}>
-                <option>by book</option>
-                <option>by author</option>
-                <option>by both</option>
+                <option value={'book'}>by book</option>
+                <option value={'author'}>by author</option>
+                <option value={'both'}>by both</option>
             </select>
             <div className={errors.textInput ? 'tooltip rounded-r-md' : ''} data-tip="Search must be more than 3 characters">
-                <input type="submit" value="Search" className="btn btn-primary rounded-r-md disabled:text-neutral-content" disabled={!!errors.textInput}/>
+                <input type="submit" value="Search" className="btn btn-primary rounded-r-md disabled:text-neutral-content disabled:border-1 disabled:border-primary" disabled={!!errors.textInput} />
             </div>
         </form>
     );
