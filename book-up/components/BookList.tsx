@@ -1,7 +1,7 @@
 "use client";
 import { Doc, OLResults } from "@/types/OLResults";
 import Pagination from "./Pagination";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import BookDetailsModal from "./BookDetailsModal";
 
 type BookListProps = {
@@ -14,8 +14,8 @@ export default function BookList({ booklist, setBooklist, loading }: BookListPro
   const [pages, setPages] = useState(0)
   const [activePage, setActivePage] = useState(1)
   const [bookId, setBookId] = useState<string>('')
+  const [isOpen, setIsOpen] = useState(false)
   const [bookSearchDetails, setBookSearchDetails] = useState<Doc | undefined>()
-  const modal = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
     if (booklist) {
@@ -29,7 +29,7 @@ export default function BookList({ booklist, setBooklist, loading }: BookListPro
     const details = booklist?.docs.find(book => book.key === bookKey)
     setBookSearchDetails(details)
     setBookId(bookKey)
-    modal?.current?.showModal()
+    setIsOpen(true)
   }
 
   if (loading || booklist === undefined) {
@@ -67,7 +67,7 @@ export default function BookList({ booklist, setBooklist, loading }: BookListPro
             </tbody>
           </table>
           {pages > 0 && <Pagination activePage={activePage} setActivePage={setActivePage} setBooklist={setBooklist} pages={pages} />}
-          <BookDetailsModal reference={modal} bookOLID={bookId} bookSearchDetails={bookSearchDetails} />
+          <BookDetailsModal bookOLID={bookId} bookSearchDetails={bookSearchDetails} isOpen={isOpen} setIsOpen={setIsOpen}/>
         </>)
         :
         <div role="alert" className="alert alert-info">

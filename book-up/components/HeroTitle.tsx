@@ -1,3 +1,4 @@
+"use client"
 import { BookOpenIcon } from "@heroicons/react/24/outline";
 
 export default function HeroTitle() {

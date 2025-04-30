@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 export type SearchBy = "book" | "author" | "both";
